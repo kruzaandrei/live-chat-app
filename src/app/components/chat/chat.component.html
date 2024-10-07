@@ -20,16 +20,5 @@
       </div>
     </div>
 
-    <div class="message-input">
-      <mat-form-field class="message-field">
-        <input matInput placeholder="Type a message" [(ngModel)]="newMessage" (keyup.enter)="sendMessage()" />
-      </mat-form-field>
-      <button mat-raised-button color="primary" (click)="sendMessage()" [disabled]="isLoading">
-        <ng-container *ngIf="!isLoading">Send</ng-container>
-        <ng-container *ngIf="isLoading">
-          <mat-spinner diameter="20"></mat-spinner>
-        </ng-container>
-      </button>
-      <button mat-button (click)="sendImage()">Send Image</button>
-    </div>
+    <app-chat-input></app-chat-input>
   </div>

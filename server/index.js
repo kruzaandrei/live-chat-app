@@ -9,7 +9,6 @@ let messages = [];
 io.on('connection', (socket) => {
   console.log('a user connected');
 
-  // Send existing messages to the new client
   socket.emit('messages', messages);
 
   socket.on('message', (message) => {

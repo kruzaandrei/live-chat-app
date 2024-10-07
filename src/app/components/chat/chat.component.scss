@@ -72,23 +72,4 @@
       }
     }
   }
-
-  .message-input {
-    display: flex;
-    align-items: center;
-    padding: 24px;
-    border-top: 1px solid #ddd;
-
-    .message-field {
-      flex: 1;
-    }
-
-    button {
-      margin-left: 10px;
-    }
-
-    mat-spinner {
-      margin-left: 5px;
-    }
-  }
 }
