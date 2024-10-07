@@ -1,46 +1,35 @@
 <div class="chat-container">
   <div class="messages">
-    <div class="message" *ngFor="let message of messages">
-      <div class="message-content">
-        <div class="info">
+    <div class="message" [class.mine]="isMyMessage(message)" *ngFor="let message of messages$ | async">
+      <div class="message-content" [class.mine]="isMyMessage(message)">
+        <div class="info" [class.mine]="isMyMessage(message)">
           <div class="user">
-            <img class="avatar" src="/assets/avatar.jpeg" alt="avatar">
-            <span>username</span>
+            <img class="avatar" [src]="'https://robohash.org/' + message.sender" alt="avatar">
+            <span>{{message.sender}}</span>
           </div>
-          <span class="message-text">{{message}}</span>
+          <ng-container [ngSwitch]="message.type">
+            <p *ngSwitchCase="'text'">{{ message.content }}</p>
+            <img *ngSwitchCase="'image'" [src]="message.content" alt="Image Message" />
+          </ng-container>
         </div>
-        <div class="message-actions">
-          <button mat-icon-button><mat-icon>content_copy</mat-icon></button>
-          <button mat-icon-button><mat-icon>delete</mat-icon></button>
+        <div class="message-actions" *ngIf="isMyMessage(message)">
+          <button mat-icon-button (click)="copyMessage(message)"
+            *ngIf="message.type === 'text'"><mat-icon>content_copy</mat-icon></button>
+          <button mat-icon-button (click)="deleteMessage(message.id)"><mat-icon>delete</mat-icon></button>
         </div>
       </div>
     </div>
-    <div class="message mine" *ngFor="let message of messages">
-      <div class="message-content mine">
-        <div class="info mine">
-          <div class="user">
-            <img class="avatar" src="/assets/avatar.jpeg" alt="avatar">
-            <span>username</span>
-          </div>
-          <span class="message-text">{{message}}</span>
-        </div>
-        <div class="message-actions">
-          <button mat-icon-button><mat-icon>content_copy</mat-icon></button>
-          <button mat-icon-button><mat-icon>delete</mat-icon></button>
-        </div>
-      </div>
+
+    <div class="message-input">
+      <mat-form-field class="message-field">
+        <input matInput placeholder="Type a message" [(ngModel)]="newMessage" (keyup.enter)="sendMessage()" />
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="sendMessage()" [disabled]="isLoading">
+        <ng-container *ngIf="!isLoading">Send</ng-container>
+        <ng-container *ngIf="isLoading">
+          <mat-spinner diameter="20"></mat-spinner>
+        </ng-container>
+      </button>
+      <button mat-button (click)="sendImage()">Send Image</button>
     </div>
   </div>
-  <div class="message-input">
-    <mat-form-field class="message-field">
-      <input matInput placeholder="Type a message" [(ngModel)]="newMessage" (keyup.enter)="sendMessage()" />
-    </mat-form-field>
-    <button mat-raised-button color="primary" (click)="sendMessage()" [disabled]="isLoading">
-      <ng-container *ngIf="!isLoading">Send</ng-container>
-      <ng-container *ngIf="isLoading">
-        <mat-spinner diameter="20"></mat-spinner>
-      </ng-container>
-    </button>
-    <button mat-button (click)="sendImage()">Send Image</button>
-  </div>
-</div>
