@@ -1,7 +1,7 @@
 <div class="message-input">
   <mat-form-field class="message-field">
     <div class="input-with-button">
-      <input matInput placeholder="Type a message" [(ngModel)]="newMessage" (keyup.enter)="sendMessage()" />
+      <input matInput placeholder="Type a message" [(ngModel)]="newMessage" (keyup.enter)="enterKeySend ? sendMessage() : null" />
       <button mat-icon-button color="primary" (click)="sendMessage()" [disabled]="isLoading" class="send-button">
         <ng-container *ngIf="!isLoading">
           <mat-icon>send</mat-icon>
@@ -15,4 +15,10 @@
   <button mat-icon-button (click)="sendImage()" color="primary">
     <mat-icon>attach_file</mat-icon>
   </button>
+</div>
+
+<div class="enter-key-option">
+  <mat-checkbox [(ngModel)]="enterKeySend">
+    Send message immediately on Enter key
+  </mat-checkbox>
 </div>

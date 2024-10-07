@@ -12,6 +12,7 @@ import { addMessage, sendMessage } from '../../store/message/message.actions';
 import { selectUsername } from '../../store/user/user.selectors';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-chat-input',
@@ -23,7 +24,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatButtonModule,
     MatProgressSpinnerModule,
-    MatIconModule
+    MatIconModule,
+    MatCheckboxModule
   ],
   templateUrl: './chat-input.component.html',
   styleUrls: ['./chat-input.component.scss'],
@@ -33,6 +35,8 @@ export class ChatInputComponent {
   isLoading = false;
   private sendSubject = new Subject<void>();
   username$: Observable<string | null>;
+
+  enterKeySend: boolean = true;
 
   constructor(private store: Store) {
     this.username$ = this.store.select(selectUsername);

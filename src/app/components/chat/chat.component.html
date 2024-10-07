@@ -8,7 +8,7 @@
             <span>{{message.sender}}</span>
           </div>
           <ng-container [ngSwitch]="message.type">
-            <p *ngSwitchCase="'text'">{{ message.content }}</p>
+            <p *ngSwitchCase="'text'" class="message-text">{{ message.content }}</p>
             <img *ngSwitchCase="'image'" [src]="message.content" alt="Image Message" />
           </ng-container>
         </div>
