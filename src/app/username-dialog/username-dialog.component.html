@@ -1,1 +1,10 @@
-<p>username-dialog works!</p>
+<h1 mat-dialog-title>Enter Username</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Username</mat-label>
+    <input matInput [(ngModel)]="username" />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="submit()">Join Chat</button>
+</div>
