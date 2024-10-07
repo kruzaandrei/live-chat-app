@@ -1,12 +1,18 @@
 <div class="message-input">
   <mat-form-field class="message-field">
-    <input matInput placeholder="Type a message" [(ngModel)]="newMessage" (keyup.enter)="sendMessage()" />
+    <div class="input-with-button">
+      <input matInput placeholder="Type a message" [(ngModel)]="newMessage" (keyup.enter)="sendMessage()" />
+      <button mat-icon-button color="primary" (click)="sendMessage()" [disabled]="isLoading" class="send-button">
+        <ng-container *ngIf="!isLoading">
+          <mat-icon>send</mat-icon>
+        </ng-container>
+        <ng-container *ngIf="isLoading">
+          <mat-spinner diameter="20"></mat-spinner>
+        </ng-container>
+      </button>
+    </div>
   </mat-form-field>
-  <button mat-raised-button color="primary" (click)="sendMessage()" [disabled]="isLoading">
-    <ng-container *ngIf="!isLoading">Send</ng-container>
-    <ng-container *ngIf="isLoading">
-      <mat-spinner diameter="20"></mat-spinner>
-    </ng-container>
+  <button mat-icon-button (click)="sendImage()" color="primary">
+    <mat-icon>attach_file</mat-icon>
   </button>
-  <button mat-button (click)="sendImage()">Send Image</button>
 </div>

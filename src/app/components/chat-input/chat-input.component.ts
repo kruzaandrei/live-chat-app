@@ -11,6 +11,7 @@ import { Message } from '../../store/message/message.model';
 import { addMessage, sendMessage } from '../../store/message/message.actions';
 import { selectUsername } from '../../store/user/user.selectors';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-chat-input',
@@ -22,6 +23,7 @@ import { CommonModule } from '@angular/common';
     MatInputModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+    MatIconModule
   ],
   templateUrl: './chat-input.component.html',
   styleUrls: ['./chat-input.component.scss'],
