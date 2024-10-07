@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { UsernameDialogComponent } from './username-dialog/username-dialog.component';
+import { UsernameDialogComponent } from './components/username-dialog/username-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -15,11 +15,11 @@ export class AppComponent implements OnInit {
   constructor(private dialog: MatDialog) { }
 
   ngOnInit() {
-    const dialogRef = this.dialog.open(UsernameDialogComponent, {
-      disableClose: true,
-    });
+    // const dialogRef = this.dialog.open(UsernameDialogComponent, {
+    //   disableClose: true,
+    // });
 
-    dialogRef.afterClosed().subscribe((username: string) => {
-    });
+    // dialogRef.afterClosed().subscribe((username: string) => {
+    // });
   }
 }
