@@ -1,1 +1,21 @@
-<p>chat works!</p>
+<div class="chat-container">
+  <div class="messges">
+    <div class="message" *ngFor="let message of messages">
+      <div class="message-content">
+        <p>{{message}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="message-input">
+    <mat-form-field class="message-field">
+      <input matInput placeholder="Type a message" [(ngModel)]="newMessage" (keyup.enter)="sendMessage()" />
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="sendMessage()" [disabled]="isLoading">
+      <ng-container *ngIf="!isLoading">Send</ng-container>
+      <ng-container *ngIf="isLoading">
+        <mat-spinner diameter="20"></mat-spinner>
+      </ng-container>
+    </button>
+    <button mat-button (click)="sendImage()">Send Image</button>
+  </div>
+</div>

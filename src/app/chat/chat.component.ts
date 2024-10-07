@@ -5,6 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @Component({
@@ -16,11 +17,26 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatButtonModule
   ],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss'
 })
 export class ChatComponent {
+  newMessage: string = '';
+  messages: Array<string> = [];
 
+  isLoading = false;
+  shouldSendOnEnter = false;
+
+  constructor() { }
+
+  sendMessage() {
+    this.messages.push(this.newMessage);
+  }
+
+  sendImage() {
+
+  }
 }
