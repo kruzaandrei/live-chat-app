@@ -50,6 +50,7 @@
         word-wrap: break-word;
         word-break: break-word;
         overflow-wrap: break-word;
+        width: 100%;
       }
 
       .user {
@@ -58,6 +59,10 @@
         justify-content: flex-start;
         align-items: center;
         gap: 8px;
+        width: 6em;
+        max-width: 6em;
+        min-width: 6em;
+        text-align: center;
 
         .avatar {
           width: 40px;
